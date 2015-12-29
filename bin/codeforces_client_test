@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require 'codeforces_client'
+
+if ARGV.size != 1
+	puts 'Using "codeforces_client_test PROBLEM_INDEX" to run sample test'
+else
+	CodeforcesClient.run_sample_test ARGV[0]
+end
