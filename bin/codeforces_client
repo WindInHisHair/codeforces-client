@@ -7,6 +7,6 @@ if ARGV.size != 2
 	puts 'Please use "codeforces_client CONTEST_ID  PROBLME_INDEX" to create the directory under CURRENT DIRECTORY , such as:'
 	puts 'codeforces_client 611 A'
 else
-	CodeforceseClient.client ARGV[0], ARGV[1]
+	CodeforcesClient.client ARGV[0], ARGV[1]
 	puts 'You can ruby sample test using "codeforces_client_test PROBLEM_INDEX" under the created directory'
 end

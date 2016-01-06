@@ -3,22 +3,24 @@ require 'yaml'
 
 class Arena
 
-	def initialize(problem_id, problem_index, p)
+	def initialize(contest_id, problem_index, p='.')
 		@working_path = create_working_dir(p)
-		@problem = codeforcesapi::problem(probelm_id, problem_index)
+		@problem = Codeforcesapi.problem(contest_id, problem_index)
 
 		create_contest
-
-
 	end
 
 	def create_contest
 
-		sourceFile = File.join @working_path, @problemIndex+'.rb'
+		contest_dir = File.join @working_path, @problem.contest_id
+		Dir.mkdir(contest_dir) if not File.exist? contest_dir
+
+		sourceFile = File.join(@working_path, @problem.contest_id, @problem.problem_index+'.rb')
 		if not File.exist?(sourceFile)
-			File.open(sourceFile, 'w') {|f|  f.puts "#Good luk for the Contest #{@problem.contestID}, Problem: #{@problem.problemIndex}"}
+			File.open(sourceFile, 'w') {|f|  f.puts "#Good luk for the Contest #{@problem.contest_id}, Problem: #{@problem.problem_index}"}
 		end
-		testFile = File.join @working_path, @problemIndex+'_sampleTest.txt'
+
+		testFile = File.join(@working_path, @problem.contest_id, @problem.problem_index+'_sampleTest.txt')
 
 		if not File.exist?(testFile)
 			create_sample_test(testFile)
@@ -38,7 +40,8 @@ class Arena
 	end
 
 	def create_working_dir(p)
-		p
+		return File.expand_path(p) if File.directory? p
+		Dir.pwd
 	end
 
 
