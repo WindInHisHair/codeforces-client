@@ -1,8 +1,6 @@
 # CodeforcesClient
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/codeforces_client`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Tool for [codeforces](http://codeforces.com) contest.
 
 ## Installation
 
@@ -22,7 +20,28 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+go to the directory where you want to put contests files, such as ```/home/user/contest```
+
+run
+```
+codeforces_client CONTEST_ID PROBLEM_INDEX
+```
+**CONTEST_ID** can be found from the contest url, like *http://codeforces.com/contest/611/problem/a*, contest id is **611**, problem index is **A**
+
+The above command will create a directory under current directory using CONTEST_ID as name, and generate sample test file inside it.
+
+```
+cd CONTEST_ID
+```
+CODIND and FIGHTING your contest
+
+
+```
+codeforces_client_test  PROBLEM_INDEX
+```
+then the sample test provided by the Codeforces website will be verified.
+
+You can also manually add new sample test by following the sample test file format.
 
 ## Development
 
