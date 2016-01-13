@@ -1,16 +1,25 @@
 require 'codeforcesapi'
 require 'yaml'
 
+
 class Arena
 
-	def initialize(contest_id, problem_index, p='.')
-		@working_path = create_working_dir(p)
+	attr :config
+
+	def initialize(contest_id, problem_index)
+		configure(contest_id)
+		@working_path = @config[:working_path]
 		@problem = Codeforcesapi.problem(contest_id, problem_index)
 
 		create_contest
 	end
 
 	def create_contest
+
+		p = File.split @working_path
+		if p[-1] == @problem.contest_id
+			@working_path = p[0...-1].join
+		end
 
 		contest_dir = File.join @working_path, @problem.contest_id
 		Dir.mkdir(contest_dir) if not File.exist? contest_dir
@@ -39,10 +48,11 @@ class Arena
 		end
 	end
 
-	def create_working_dir(p)
-		return File.expand_path(p) if File.directory? p
-		Dir.pwd
-	end
 
+	def configure(cid)
+		@config = Hash.new
+		p = Dir.pwd
+		@config[:working_path] = p
+	end
 
 end

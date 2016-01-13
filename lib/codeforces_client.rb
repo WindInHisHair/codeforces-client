@@ -5,7 +5,8 @@ require 'open3'
 module CodeforcesClient
   # Your code goes here...
   #
-  def self.client( contestID, problemIndex, working_path='.')
+
+  def self.client( contestID, problemIndex)
     Arena.new(contestID, problemIndex)
   end
 
