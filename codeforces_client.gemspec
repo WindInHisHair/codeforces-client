@@ -30,4 +30,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "yaml", ">=0"
   spec.add_development_dependency "codeforcesapi", ">=0"
+
+  spec.add_dependency "codeforcesapi", ">=0"
 end
